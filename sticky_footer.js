@@ -1,41 +1,34 @@
-$(window).bind("load", function() {      
-  var footerHeight = 0,
-  footerTop = 0,
-  $footer = $("#footer");
-  $header = $("#header");
-  $content = $("#content");
-  positionFooter();
-  function positionFooter() {
-    footerHeight = $footer.height();
-    footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)+"px";
-    header1 = $header.height();
-    content1 = $content.height();
+function stickyFooter() {
+    // Footer element declaration
+    var footerElement = document.querySelector('.footer'),
+        headerElement = document.querySelector('.header'),
+        contentElement = document.querySelector('.content'),
+        windowHeight = window.innerHeight;
 
-    // DEBUGGING STUFF
+    var elementSize = function (el) {
+        console.log(el);
+        return el.scrollHeight;
+    };
 
-    /*console.log("Document height: ", $(document.body).height());
-    console.log("Window height: ", $(window).height());
-    console.log("Window scroll: ", $(window).scrollTop());
-    console.log("Footer height: ", footerHeight);
-    console.log("Footer top: ", footerTop);
-    console.log("-----------")
-    console.log("Header height: ", header1);
-    console.log("Content height: ", content1);
-    console.log("-----------")*/
+    var footerHeight = elementSize(footerElement),
+        headerHeight = elementSize(headerElement),
+        contentHeight = elementSize(contentElement);
 
-    if ( (header1+content1+footerHeight) < $(window).height()) {
-      $footer.css({
-        position: "absolute"
-      }).stop().animate({
-        top: footerTop
-      })
-    } else {
-      $footer.css({
-        position: "static"
-      })
+    if (windowHeight > footerHeight + headerHeight + contentHeight) {
+        footerElement.style.position = "absolute";
+        footerElement.style.bottom = 0;
     }
-  }
-  $(window)
-  .scroll(positionFooter)
-  .resize(positionFooter)   
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    //noinspection BadExpressionStatementJS
+    stickyFooter();
 });
+
+/*TODO:
+*   - Add a window resize function.
+*   - Add a element content watcher to check if the content size changes.
+*   - Change selectors to call the element from outside the JS file.
+*   - Only expect the footer element.
+*/
