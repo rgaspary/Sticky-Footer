@@ -29,4 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
 /*TODO:
 *   - Add a window resize function.
 *   - Add a element content watcher to check if the content size changes.
- */
+*   - Change selectors to call the element from outside the JS file.
+*   - Only expect the footer element.
+*/
