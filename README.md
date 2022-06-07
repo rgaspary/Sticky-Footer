@@ -1,4 +1,4 @@
-JavaScript Sticky footer
+# JavaScript Sticky footer [OUTDATED]
 
 This function will set any footer to the bottom of the page using vanilla JavaScript. No jQuery required.
 
